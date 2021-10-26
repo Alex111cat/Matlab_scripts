@@ -1,7 +1,11 @@
-%https://docs.exponenta.ru/comm/ug/bluetooth-low-energy-transmitter.html
+%https://www.mathworks.com/help/comm/ug/bluetooth-low-energy-transmitter.html
 
 clc;
 clear all;
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% Transmitter Code %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Настройка рекламного канала PDU
 cfgLLAdv = bleLLAdvertisingChannelPDUConfig;
@@ -73,7 +77,7 @@ txNumberOfFrames        = 1e4;
 txFrontEndSampleRate    = symbolRate*sps;
 
 % The default signal source is 'File'
-signalSink = 'File';
+signalSink = 'ADALM-PLUTO';
 
 if strcmp(signalSink,'File')
 
@@ -94,7 +98,7 @@ elseif strcmp(signalSink,'ADALM-PLUTO')
     connectedRadios = findPlutoRadio; % Discover ADALM-PLUTO radio(s) connected to your computer
     radioID = connectedRadios(1).RadioID;
     sigSink = sdrtx( 'Pluto',...
-        'RadioID',           radioID,...
+        'RadioID',           'usb:0',...
         'CenterFrequency',   txCenterFrequency,...
         'Gain',              0,...
         'SamplesPerFrame',   txFrameLength,...
