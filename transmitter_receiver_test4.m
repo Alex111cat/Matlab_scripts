@@ -1,5 +1,3 @@
-%https://docs.exponenta.ru/comm/ug/bluetooth-low-energy-transmitter.html
-
 clc;
 clear all;
 
